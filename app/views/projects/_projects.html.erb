@@ -1,0 +1,28 @@
+<div class="container-fluid">            
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td>Status</td>
+        <% @developers.each do |developer|%>
+          <td><b><%= developer %></b> </td>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% Task::STATUS.each do |status| %>
+      <tr>
+        <td><b><%= status.titleize %></b></td>
+        <% @developers.each do |dev| %>
+          <td> 
+          <ol>
+            <% @data[status].try(:[],dev).try(:each) do |task| %>
+              <li><%= task%></li>
+            <% end %>
+          </ol>
+          </td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

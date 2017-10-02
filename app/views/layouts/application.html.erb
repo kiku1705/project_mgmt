@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Project Management</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart']});
+   </script>
+</head>
+<body>
+	<%= render "layouts/header" %>
+	<!-- <p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p> -->
+	<div class="container">
+		<% if flash[:notice] %>
+	    <div class="alert alert-success"><%= flash[:notice].html_safe %></div>
+	  <% end %>
+	  <% if flash[:error] %>
+	    <div class="alert alert-danger"><%= flash[:error].html_safe %></div>
+	  <% end %>
+		<%= yield %>
+	</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+  	<div class="row">
+	    <div class="col-md-6">
+	      <div class="form-group">
+	        <label class="control-label col-md-3">My Todo's
+	        </label>
+	      </div>
+	    </div>
+  	</div>
+  </div>
+  <div class="panel-body">
+	 	<div class="container-fluid">            
+		  <table class="table table-bordered">
+		    <thead>
+		      <tr>
+		        <td>Status</td>
+		        <% @projects.each do |project|%>
+		          <td><b><%= project %></b> </td>
+		        <% end %>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <% Task::STATUS.each do |status| %>
+		      <tr>
+		        <td><b><%= status.titleize %></b></td>
+		        <% @projects.each do |proj| %>
+		          <td> 
+		          <ol>
+		            <% @data[status].try(:[],proj).try(:each) do |task| %>
+		              <li><%= task%></li>
+		            <% end %>
+		          </ol>
+		          </td>
+		        <% end %>
+		      </tr>
+		      <% end %>
+		    </tbody>
+		  </table>
+		</div>
+  </div>
+</div>

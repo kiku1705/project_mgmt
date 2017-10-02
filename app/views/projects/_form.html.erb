@@ -1,0 +1,33 @@
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label col-md-3">Name
+          <span class="required" aria-required="true">* </span>
+        </label>
+        <div class="col-md-9">
+          <%= f.text_field :name, :class=>"form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label col-md-3">Description
+        </label>
+        <div class="col-md-9">
+          <%= f.text_area :description, :class=>"form-control" %>
+        </div>
+      </div>
+    </div> 
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label col-md-3">Project Manager
+          <span class="required" aria-required="true">* </span>
+        </label>
+        <div class="col-md-6">
+          <%= f.select(:user_id, options_for_select(project_managers_list),{:include_blank => "---Select---"}, {:class => "form-control"}) %>
+        </div>
+      </div>
+    </div>
+  </div>

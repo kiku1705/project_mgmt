@@ -1,0 +1,62 @@
+<% can_update = @task.persisted? && !current_user.role.project_manager? %>
+<div class="form-body">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label col-md-3">Name
+          <span class="required" aria-required="true">* </span>
+        </label>
+        <div class="col-md-9">
+          <%= f.text_field :name, :class=>"form-control", disabled: can_update %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label col-md-3">Description
+        </label>
+        <div class="col-md-9">
+          <%= f.text_area :description, :class=>"form-control", disabled: can_update %>
+        </div>
+      </div>
+    </div> 
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label col-md-3">Project
+          <span class="required" aria-required="true">* </span>
+        </label>
+        <div class="col-md-9">
+          <%= f.select(:project_id, options_for_select(project_list),{:prompt => '---Select---' }, {:class => 'form-control', disabled: can_update }) %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label col-md-3">Developer
+          <span class="required" aria-required="true">* </span>
+        </label>
+        <div class="col-md-9">
+          <%= f.select(:user_id, options_for_select(developer_list),{:prompt => '---Select---'}, {:class => 'form-control',disabled: can_update }) %>
+        </div>
+      </div>
+    </div> 
+  </div>
+  <br/>
+  <% if @task.persisted? %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label col-md-3">Status
+            <span class="required" aria-required="true">* </span>
+          </label>
+          <div class="col-md-9">
+            <%= f.select(:status, options_for_select(Task::STATUS.map { |status| [status.titleize,status]},@task.status),{}, {:class => 'form-control'}) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,34 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="row">
+	    <div class="col-md-6">
+	      <div class="form-group">
+	        <label class="control-label col-md-3">Task List
+	        </label>
+	      </div>
+	    </div>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="container-fluid">            
+		  <table class="table table-bordered">
+		    <thead>
+		      <tr>
+		        <td>Name</td>
+		        <td>Status</td>
+		        <td>Action </td>
+		      </tr>
+		    </thead>
+		    <tbody>
+		   		<% current_user.tasks.each do |task|%>
+			      <tr>
+			        <td><b><%= task.name %></b></td>
+			        <td><b><%= task.status.titleize %></b></td>
+			        <td><%= link_to '<i title="Update Task" class="glyphicon glyphicon-check"></i>'.html_safe, edit_task_path(task) if policy(task).update?  %> </td>
+			      </tr>
+		      <% end %>
+		    </tbody>
+		  </table>
+		</div>
+  </div>
+</div>
