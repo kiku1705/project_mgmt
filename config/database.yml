@@ -83,6 +83,4 @@ test:
 #
 production:
   <<: *default
-  database: project_mgmt_production
-  username: project_mgmt
-  password: <%= ENV['PROJECT_MGMT_DATABASE_PASSWORD'] %>
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
