@@ -1,2 +1,1 @@
-web: bundle exec puma -p $PORT -C ./config/puma.rb
-dj: rake jobs:work
+web: bundle exec puma -C config/puma.rb
